@@ -12,7 +12,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Warframe.Email.Models;
 using Warframe.Email.Services;
-using Microsoft.Extensions.Configuration;
 using Warframe.Email.Providers;
 
 namespace Warframe.Email
