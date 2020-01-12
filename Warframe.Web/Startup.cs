@@ -21,6 +21,7 @@ using Newtonsoft.Json.Serialization;
 using Warframe.Email;
 using Warframe.Email.Models;
 using Warframe.Email.Providers;
+using Warframe.Login;
 
 namespace Warframe.Web
 {
@@ -56,35 +57,7 @@ namespace Warframe.Web
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddAuthentication(options =>
-                    {
-                        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                        options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
-                    })
-                .AddCookie()
-                .AddFacebook(
-                options =>
-                {
-                    options.AppId = Configuration["Authentication:Facebook:AppId"];
-                    options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
-                })
-                .AddGoogle(
-                    options =>
-                    {
-                        IConfigurationSection googleAuthNSection = Configuration.GetSection("Authentication:Google");
-                        options.ClientId = googleAuthNSection["AppId"];
-                        options.ClientSecret = googleAuthNSection["AppSecret"];
-                    })
-                .AddMicrosoftAccount(options =>
-                {
-                    options.ClientId = Configuration["Authentication:Microsoft:AppId"];
-                    options.ClientSecret = Configuration["Authentication:Microsoft:AppSecret"];
-                })
-                .AddTwitter(options =>
-                {
-                    options.ConsumerKey = Configuration["Authentication:Twitter:AppId"];
-                    options.ConsumerSecret = Configuration["Authentication:Twitter:AppSecret"];
-                });
+            services.AddLogin(Configuration);
             
             services.AddControllersWithViews();
             services.AddRazorPages();

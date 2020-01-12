@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Warframe.Email\Warframe.Email.csproj" />
+    <ProjectReference Include="..\Warframe.Login\Warframe.Login.csproj" />
   </ItemGroup>
 
 
