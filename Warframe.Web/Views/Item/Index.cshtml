@@ -1,0 +1,30 @@
+﻿@using Microsoft.EntityFrameworkCore.Design
+@using static Warframe.Web.Models.Item
+@model ItemViewModel
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("SingleItem", "Item", FormMethod.Post))
+{
+    <form asp-controller="Item" asp-action="GetAll">
+        <label>Select Item:</label>
+        <select class="form-control form-control-sm" asp-for="Value" asp-items="@Model.Items">
+            <option>Select one</option>
+        </select>
+        <input type="submit" value="Send"/>
+    </form>
+}
+
+@*@foreach (var item in Model)
+{
+    <div>
+        <h4>@item["item_name"]</h4>
+        <img src="https://warframe.market/static/assets/" + @item["thumb"] />
+    </div>
+}*@
+
+@section Scripts
+{
+    <script type="module" src="~/js/Item.js"></script>
+}
